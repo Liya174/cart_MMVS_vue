@@ -1,32 +1,31 @@
 <template>
-  <div>
-    <ProductItem v-for="product in products" :key="product.id" :product="product" />
+  <div  class="list">
+    <ProductItem 
+      v-for="product in products"
+      :key="product.id"
+      :product="product"
+      :setCount="setCount"
+    />
   </div>
 </template>
 
 <script>
-import ProductItem from './ProductItem/ProductItem.vue';
+import ProductItem from "./ProductItem/ProductItem.vue";
 
 export default {
-  name: 'ProductsList',
+  name: "ProductsList",
   components: {
     ProductItem
   },
-  data() {
-    return { 
-      products: [
-        {
-          id: 0,
-          title: 'Item1',
-          price: 40,
-        },
-        {
-          id: 1,
-          title: 'Item2',
-          price: 10
-        },
-      ]
-    }
-  }
+  props: ["products", "setCount"],
 }
 </script>
+
+<style scoped>
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  align-content: flex-start;
+}
+</style>
