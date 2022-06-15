@@ -2,11 +2,11 @@
   <div class="sidebar">
     <div>Ваш заказ:</div>
     
-    <OrderList v-if="hasProducts" :products="products" />
+    <OrderList v-if="hasProducts" :products="orderProducts" />
     <div v-else>Пусто</div>
     
     <OrderButton 
-      :products="products"
+      :products="orderProducts"
       :onClick="onOrderButtonClick"
     />
   </div>
@@ -25,7 +25,10 @@ export default {
   props: ["products", "onOrderButtonClick"],
   computed: {
     hasProducts() {
-      return this.products.reduce((prevValue, currentValue) => prevValue.count + currentValue.count, 0) > 0;
+      return this.products.reduce((accumulator, currentValue) => +accumulator + +currentValue.count, 0) > 0;
+    },
+    orderProducts() {
+      return this.products.filter(product => product.count > 0);
     }
   }
 }

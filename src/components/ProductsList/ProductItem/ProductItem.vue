@@ -1,28 +1,32 @@
 <template>
   <div class="container" :class="{ active: product.count > 0 }">
+    <img :src="product.imgUrl" :alt="product.title" class="image" />
     <p>{{ product.title }}</p>
     <p>{{ product.description }}</p>
-    <p>Цена: {{ product.price }} руб.</p>     
 
-        <button v-if="product.count === 0" class="button" @click="() => changeCount('add')">
-          Добавить в корзину
+    <div class="itemFooter">
+      <p>Цена: {{ product.price }} руб.</p>   
+
+      <button v-if="product.count === 0" class="itemButton" @click="() => changeCount('add')">
+        Добавить в корзину
+      </button>
+
+      <div v-else class="counterContainer">
+        <button 
+          class="itemButton"
+          @click="() => changeCount('remove')"
+        >
+          -
         </button>
-
-        <div v-else class="counterContainer">
-          <button 
-            class="button"
-            @click="() => changeCount('remove')"
-          >
-            -
-          </button>
-          <div class="counter">{{ product.count }}</div>
-          <button 
-            class="button"
-            @click="() => changeCount('add')"
-          >
-            +
-          </button>
-        </div>
+        <div class="counter">{{ product.count }}</div>
+        <button 
+          class="itemButton"
+          @click="() => changeCount('add')"
+        >
+          +
+        </button>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -63,13 +67,18 @@ export default {
   border-color: green;
 }
 
-.button {
+.itemFooter {
+  width: 100%;
+  margin-top: auto;
+  text-align: center;
+}
+
+.itemButton {
   width: 100%;
   cursor: pointer;
 }
 
 .counterContainer {
-  margin-top: auto;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -77,5 +86,11 @@ export default {
 
 .counter {
   text-align: center;
+}
+
+.image {
+  width: 100%;
+  height: 150px;
+  object-fit: contain;
 }
 </style>

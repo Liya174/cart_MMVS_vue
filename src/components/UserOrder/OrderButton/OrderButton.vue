@@ -14,7 +14,7 @@ export default {
   props: ["products", "count"],
   computed: {
     isDisabled() {
-      return this.products.reduce((prevValue, currentValue) => prevValue.count + currentValue.count, 0) === 0;
+      return this.products.reduce((accumulator, currentValue) => +accumulator + +currentValue.count, 0) === 0;
     }
   }
 }

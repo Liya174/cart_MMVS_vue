@@ -5,7 +5,7 @@
       :key="product.id"
     >
       <span>{{ product.title }}</span>
-      <span v-if="product.count > 1">&nbsp;({product.count})</span>
+      <span v-if="product.count > 1">&nbsp;({{ product.count }})</span>
     </li>
   </ul>
 </template>

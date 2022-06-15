@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <ProductsList v-bind:products="products" :setCount="setCount"/>
-    <UserOrder v-bind:products="products" :onOrderButtonClick="toggleModalOpen" />
+    <ProductsList :products="products" :setCount="setCount"/>
+    <UserOrder :products="products" :onOrderButtonClick="toggleModalOpen" />
     <OrderModal v-if="isModalOpen" :products="products" :onOkButtonClick="toggleModalOpen"/>
   </div>
 </template>
@@ -10,7 +10,7 @@
 import OrderModal from "./components/OrderModal/OrderModal.vue"
 import ProductsList from "./components/ProductsList/ProductsList.vue"
 import UserOrder from "./components/UserOrder/UserOrder.vue"
-import { fakeData } from "./fakes/Fakes";
+import { fakeData } from "../public/fakes/Fakes";
 
 export default {
   name: "App",
